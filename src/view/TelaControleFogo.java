@@ -27,21 +27,44 @@ public class TelaControleFogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botaoVoltarCaldeira = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Caldeira - Tela de Controle do Fogo");
+
+        botaoVoltarCaldeira.setText("Voltar a Caldeira");
+        botaoVoltarCaldeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarCaldeiraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(botaoVoltarCaldeira)
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(botaoVoltarCaldeira)
+                .addGap(48, 48, 48))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoVoltarCaldeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarCaldeiraActionPerformed
+        new TelaCaldeira().setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarCaldeiraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +102,6 @@ public class TelaControleFogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoVoltarCaldeira;
     // End of variables declaration//GEN-END:variables
 }

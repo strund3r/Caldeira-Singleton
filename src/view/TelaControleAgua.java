@@ -28,8 +28,10 @@ public class TelaControleAgua extends javax.swing.JFrame {
     private void initComponents() {
 
         sliderAgua = new javax.swing.JSlider();
+        botaoVoltarCaldeira = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Caldeira - Tela de Controle da Água");
 
         sliderAgua.setOrientation(javax.swing.JSlider.VERTICAL);
         sliderAgua.setPaintLabels(true);
@@ -37,25 +39,46 @@ public class TelaControleAgua extends javax.swing.JFrame {
         sliderAgua.setSnapToTicks(true);
         sliderAgua.setToolTipText("");
 
+        botaoVoltarCaldeira.setText("Voltar a Caldeira");
+        botaoVoltarCaldeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarCaldeiraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(276, Short.MAX_VALUE)
-                .addComponent(sliderAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(sliderAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botaoVoltarCaldeira)
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(sliderAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addGap(18, 18, 18)
+                .addComponent(botaoVoltarCaldeira)
+                .addGap(47, 47, 47))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoVoltarCaldeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarCaldeiraActionPerformed
+        new TelaCaldeira().setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarCaldeiraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,6 +117,7 @@ public class TelaControleAgua extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoVoltarCaldeira;
     private javax.swing.JSlider sliderAgua;
     // End of variables declaration//GEN-END:variables
 }
