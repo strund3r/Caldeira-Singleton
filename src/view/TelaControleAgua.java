@@ -1,21 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import caldeira.Caldeira;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 /**
  *
  * @author Franzwagner Ternus
  */
 public class TelaControleAgua extends javax.swing.JFrame {
-
+    
+    int novoVolume;
+    int clique = 0;
+    
     /**
      * Creates new form TelaCaldeira
      */
     public TelaControleAgua() {
         initComponents();
+        mostrarValores();
+    }
+    
+    public void mostrarValores(){
+        campoVolumeAgua.setText(String.valueOf(Caldeira.getInstancia().getVolume()));
     }
 
     /**
@@ -27,17 +36,15 @@ public class TelaControleAgua extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sliderAgua = new javax.swing.JSlider();
         botaoVoltarCaldeira = new javax.swing.JButton();
+        botaoDefinirAgua = new javax.swing.JButton();
+        botaoAumentarAgua = new javax.swing.JButton();
+        botaoDiminuirAgua = new javax.swing.JButton();
+        campoVolumeAgua = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Caldeira - Tela de Controle da Água");
-
-        sliderAgua.setOrientation(javax.swing.JSlider.VERTICAL);
-        sliderAgua.setPaintLabels(true);
-        sliderAgua.setPaintTicks(true);
-        sliderAgua.setSnapToTicks(true);
-        sliderAgua.setToolTipText("");
+        setResizable(false);
 
         botaoVoltarCaldeira.setText("Voltar a Caldeira");
         botaoVoltarCaldeira.addActionListener(new java.awt.event.ActionListener() {
@@ -46,28 +53,65 @@ public class TelaControleAgua extends javax.swing.JFrame {
             }
         });
 
+        botaoDefinirAgua.setText("Definir Nível da Água");
+        botaoDefinirAgua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDefinirAguaActionPerformed(evt);
+            }
+        });
+
+        botaoAumentarAgua.setText("+");
+        botaoAumentarAgua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAumentarAguaActionPerformed(evt);
+            }
+        });
+
+        botaoDiminuirAgua.setText("-");
+        botaoDiminuirAgua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDiminuirAguaActionPerformed(evt);
+            }
+        });
+
+        campoVolumeAgua.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        campoVolumeAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(sliderAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botaoVoltarCaldeira)
-                        .addGap(125, 125, 125))))
+                .addGap(40, 40, 40)
+                .addComponent(botaoVoltarCaldeira)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(botaoDefinirAgua)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(botaoDiminuirAgua)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoAumentarAgua)
+                .addGap(90, 90, 90))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(campoVolumeAgua, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(sliderAgua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(campoVolumeAgua, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(botaoVoltarCaldeira)
-                .addGap(47, 47, 47))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoDiminuirAgua)
+                    .addComponent(botaoAumentarAgua))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoVoltarCaldeira)
+                    .addComponent(botaoDefinirAgua))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -79,6 +123,55 @@ public class TelaControleAgua extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_botaoVoltarCaldeiraActionPerformed
+
+    private void botaoDefinirAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDefinirAguaActionPerformed
+        try {
+            int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente modificar o volume da água?", 
+                "Caldeira - Confirmar Volume", YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resp == JOptionPane.YES_OPTION){
+                if(Integer.parseInt(campoVolumeAgua.getText()) < Caldeira.getInstancia().getAguaMin()){
+                    JOptionPane.showMessageDialog(rootPane, "Não é possível modificar o volume abaixo do volume mínimo!", "Caldeira - Erro", JOptionPane.ERROR_MESSAGE);
+                }if(Integer.parseInt(campoVolumeAgua.getText()) > Caldeira.getInstancia().getAguaMax()){
+                    JOptionPane.showMessageDialog(rootPane, "Não é possível modificar o volume acima do volume máximo!", "Caldeira - Erro", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    Caldeira.getInstancia().setVolume(novoVolume);
+                    JOptionPane.showMessageDialog(rootPane, "Volume modificado com sucesso!", "Caldeira - Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // DANDO ERRO !!!!!!!!!!!
+//                    if(clique > 0){
+//                        Caldeira.getInstancia().setTemperaturaAgua(Caldeira.getInstancia().getTemperaturaAgua() - (2 * clique));
+//                    }if(clique < 0){
+//                        Caldeira.getInstancia().setTemperaturaAgua(Caldeira.getInstancia().getTemperaturaAgua() + (2 * clique));
+//                    }
+                }
+            }
+        } catch (Exception erro) {
+            Logger.getLogger(TelaControleAgua.class.getName()).log(Level.SEVERE, null, erro);
+            JOptionPane.showMessageDialog(rootPane, erro.getMessage());
+        }
+    }//GEN-LAST:event_botaoDefinirAguaActionPerformed
+
+    private void botaoAumentarAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAumentarAguaActionPerformed
+        
+        clique++;
+        
+        novoVolume = Integer.parseInt(campoVolumeAgua.getText());
+        
+        novoVolume = novoVolume + 10;
+        
+        campoVolumeAgua.setText(Integer.toString(novoVolume));
+    }//GEN-LAST:event_botaoAumentarAguaActionPerformed
+
+    private void botaoDiminuirAguaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDiminuirAguaActionPerformed
+       
+        clique--;
+        
+        novoVolume = Integer.parseInt(campoVolumeAgua.getText());
+        
+        novoVolume = novoVolume - 10;
+        
+        campoVolumeAgua.setText(Integer.toString(novoVolume));
+    }//GEN-LAST:event_botaoDiminuirAguaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +210,10 @@ public class TelaControleAgua extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAumentarAgua;
+    private javax.swing.JButton botaoDefinirAgua;
+    private javax.swing.JButton botaoDiminuirAgua;
     private javax.swing.JButton botaoVoltarCaldeira;
-    private javax.swing.JSlider sliderAgua;
+    private javax.swing.JLabel campoVolumeAgua;
     // End of variables declaration//GEN-END:variables
 }

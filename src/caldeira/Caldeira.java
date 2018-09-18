@@ -1,6 +1,10 @@
 /*
-cada 10L água = -2°graus caldeira
-cada 10° fogo = 5°graus caldeira
+Valores dos atributos:
+
+10 litros de água a mais dentro da caldeira: = -2º C dentro da caldeira
+10ºC a mais de fogo aumenta em 5º a temperatura dentro caldeira 
+10ºC a menos de fogo diminui em 5º a temperatura dentro da caldeira
+
 
 Class Caldeira {
 
@@ -47,8 +51,8 @@ public class Caldeira {
         if (volume < aguaMax && volume > getAguaMin()) {
             this.volume = volume;
             this.temperaturaAgua -= 2;
-            throw new Exception("Volume excede o limite");
-        }
+       }
+       this.volume = volume;
     }
 
     public int getTemperaturaFogo() {

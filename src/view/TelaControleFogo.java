@@ -5,17 +5,31 @@
  */
 package view;
 
+import caldeira.Caldeira;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
+
 /**
  *
  * @author Franzwagner Ternus
  */
 public class TelaControleFogo extends javax.swing.JFrame {
-
+    
+    int novaTemperatura;
+    int clique = 0;
+    
     /**
      * Creates new form TelaControleFogo
      */
     public TelaControleFogo() {
         initComponents();
+        mostrarValores();
+    }
+    
+    public void mostrarValores(){
+        campoTemperaturaFogo.setText(String.valueOf(Caldeira.getInstancia().getTemperaturaFogo()));
     }
 
     /**
@@ -27,10 +41,32 @@ public class TelaControleFogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botaoAumentarFogo = new javax.swing.JButton();
+        botaoDiminuirFogo = new javax.swing.JButton();
+        campoTemperaturaFogo = new javax.swing.JLabel();
         botaoVoltarCaldeira = new javax.swing.JButton();
+        botarDefinirFogo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Caldeira - Tela de Controle do Fogo");
+        setResizable(false);
+
+        botaoAumentarFogo.setText("+");
+        botaoAumentarFogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAumentarFogoActionPerformed(evt);
+            }
+        });
+
+        botaoDiminuirFogo.setText("-");
+        botaoDiminuirFogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDiminuirFogoActionPerformed(evt);
+            }
+        });
+
+        campoTemperaturaFogo.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        campoTemperaturaFogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         botaoVoltarCaldeira.setText("Voltar a Caldeira");
         botaoVoltarCaldeira.addActionListener(new java.awt.event.ActionListener() {
@@ -39,32 +75,103 @@ public class TelaControleFogo extends javax.swing.JFrame {
             }
         });
 
+        botarDefinirFogo.setText("Definir Temperatura");
+        botarDefinirFogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botarDefinirFogoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
+                .addGap(40, 40, 40)
                 .addComponent(botaoVoltarCaldeira)
-                .addGap(125, 125, 125))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(botarDefinirFogo)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(botaoDiminuirFogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoAumentarFogo)
+                .addGap(90, 90, 90))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(campoTemperaturaFogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addComponent(botaoVoltarCaldeira)
-                .addGap(48, 48, 48))
+                .addGap(75, 75, 75)
+                .addComponent(campoTemperaturaFogo, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoDiminuirFogo)
+                    .addComponent(botaoAumentarFogo))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoVoltarCaldeira)
+                    .addComponent(botarDefinirFogo))
+                .addGap(30, 30, 30))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoAumentarFogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAumentarFogoActionPerformed
+
+        novaTemperatura = Integer.parseInt(campoTemperaturaFogo.getText());
+        
+        novaTemperatura = novaTemperatura + 10;
+
+        campoTemperaturaFogo.setText(Integer.toString(novaTemperatura));
+    }//GEN-LAST:event_botaoAumentarFogoActionPerformed
+
     private void botaoVoltarCaldeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarCaldeiraActionPerformed
         new TelaCaldeira().setVisible(true);
 
         this.dispose();
     }//GEN-LAST:event_botaoVoltarCaldeiraActionPerformed
+
+    private void botarDefinirFogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botarDefinirFogoActionPerformed
+        try {
+            int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente modificar a temperatura do fogo?", 
+                "Caldeira - Confirmar Temperatura", YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(resp == JOptionPane.YES_OPTION){
+                if(Integer.parseInt(campoTemperaturaFogo.getText()) < Caldeira.getInstancia().getTemperaturaMin()){
+                    JOptionPane.showMessageDialog(rootPane, "Não é possível modificar a temperatura abaixo da temperatura mínima!", "Caldeira - Erro", JOptionPane.ERROR_MESSAGE);
+                }if(Integer.parseInt(campoTemperaturaFogo.getText()) > Caldeira.getInstancia().getTemperaturaMax()){
+                    JOptionPane.showMessageDialog(rootPane, "Não é possível modificar a temperatura acima da temperatura máxima!", "Caldeira - Erro", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    Caldeira.getInstancia().setTemperaturaFogo(novaTemperatura);
+                    JOptionPane.showMessageDialog(rootPane, "Temperatura modificada com sucesso!", "Caldeira - Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // DANDO ERRO !!!!!!!!!!!!
+//                    if(clique > 0){
+//                        Caldeira.getInstancia().setTemperaturaAgua(Caldeira.getInstancia().getTemperaturaAgua() + (5 * clique));
+//                    }if(clique < 0){
+//                        Caldeira.getInstancia().setTemperaturaAgua(Caldeira.getInstancia().getTemperaturaAgua() - (5 * clique));
+//                    }      
+                }
+            }
+        } catch (Exception erro) {
+            Logger.getLogger(TelaControleAgua.class.getName()).log(Level.SEVERE, null, erro);
+            JOptionPane.showMessageDialog(rootPane, erro.getMessage());
+        }
+    }//GEN-LAST:event_botarDefinirFogoActionPerformed
+
+    private void botaoDiminuirFogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDiminuirFogoActionPerformed
+        novaTemperatura = Integer.parseInt(campoTemperaturaFogo.getText());
+        
+        novaTemperatura = novaTemperatura - 10;
+
+        campoTemperaturaFogo.setText(Integer.toString(novaTemperatura));
+    }//GEN-LAST:event_botaoDiminuirFogoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +209,10 @@ public class TelaControleFogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAumentarFogo;
+    private javax.swing.JButton botaoDiminuirFogo;
     private javax.swing.JButton botaoVoltarCaldeira;
+    private javax.swing.JButton botarDefinirFogo;
+    private javax.swing.JLabel campoTemperaturaFogo;
     // End of variables declaration//GEN-END:variables
 }

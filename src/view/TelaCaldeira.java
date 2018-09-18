@@ -5,20 +5,34 @@
  */
 package view;
 
+import caldeira.Caldeira;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import sun.security.jca.GetInstance;
 
 /**
  *
  * @author Franzwagner Ternus
  */
 public class TelaCaldeira extends javax.swing.JFrame {
-
+    
+    //Caldeira caldeira = Caldeira.getInstancia().;
     /**
      * Creates new form TelaCaldeira
      */
     public TelaCaldeira() {
         initComponents();
+        mostrarValores();
+    }
+    
+    public void mostrarValores(){
+        saidaNivelMaxAgua.setText(String.valueOf(Caldeira.getInstancia().getAguaMax()) + " Litros");
+        saidaNivelMinAgua.setText(String.valueOf(Caldeira.getInstancia().getAguaMin()) + " Litros");
+        saidaVolumeAgua.setText(String.valueOf(Caldeira.getInstancia().getVolume()) + " Litros");
+        saidaTempMaxAgua.setText(String.valueOf(Caldeira.getInstancia().getTemperaturaMax()) + " °C");
+        saidaTempMinAgua.setText(String.valueOf(Caldeira.getInstancia().getTemperaturaMin()) + " °C");
+        saidaTempAgua.setText(String.valueOf(Caldeira.getInstancia().getTemperaturaAgua()) + " °C");
+        saidaTempFogo.setText(String.valueOf(Caldeira.getInstancia().getTemperaturaFogo()) + " °C");
     }
 
     /**
@@ -36,18 +50,29 @@ public class TelaCaldeira extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        saidaVolumeAgua = new javax.swing.JLabel();
+        saidaNivelMaxAgua = new javax.swing.JLabel();
+        saidaNivelMinAgua = new javax.swing.JLabel();
         panelDadosTemperatura = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        saidaTempAgua = new javax.swing.JLabel();
+        saidaTempMaxAgua = new javax.swing.JLabel();
+        saidaTempMinAgua = new javax.swing.JLabel();
         panelDadosTemperatura1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        saidaTempFogo = new javax.swing.JLabel();
+        saidaTempMaxFogo = new javax.swing.JLabel();
+        saidaTempMinFogo = new javax.swing.JLabel();
         botaoSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Caldeira - Tela Principal");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
         botaoTelaControleAgua.setText("Ir para tela de controle da água");
         botaoTelaControleAgua.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +96,12 @@ public class TelaCaldeira extends javax.swing.JFrame {
 
         jLabel3.setText("Nível Mínimo de Água:");
 
+        saidaVolumeAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaNivelMaxAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaNivelMinAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout panelDadosAguaLayout = new javax.swing.GroupLayout(panelDadosAgua);
         panelDadosAgua.setLayout(panelDadosAguaLayout);
         panelDadosAguaLayout.setHorizontalGroup(
@@ -78,21 +109,34 @@ public class TelaCaldeira extends javax.swing.JFrame {
             .addGroup(panelDadosAguaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saidaVolumeAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaNivelMaxAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaNivelMinAgua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelDadosAguaLayout.setVerticalGroup(
             panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDadosAguaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaVolumeAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaNivelMaxAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelDadosAguaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDadosAguaLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(saidaNivelMinAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panelDadosTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da Temperatura", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
@@ -103,6 +147,12 @@ public class TelaCaldeira extends javax.swing.JFrame {
 
         jLabel6.setText("Temperatura Mínima da Água:");
 
+        saidaTempAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaTempMaxAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaTempMinAgua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout panelDadosTemperaturaLayout = new javax.swing.GroupLayout(panelDadosTemperatura);
         panelDadosTemperatura.setLayout(panelDadosTemperaturaLayout);
         panelDadosTemperaturaLayout.setHorizontalGroup(
@@ -110,30 +160,49 @@ public class TelaCaldeira extends javax.swing.JFrame {
             .addGroup(panelDadosTemperaturaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saidaTempMaxAgua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempAgua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempMinAgua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelDadosTemperaturaLayout.setVerticalGroup(
             panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDadosTemperaturaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addGroup(panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempMaxAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelDadosTemperaturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDadosTemperaturaLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(saidaTempMinAgua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         panelDadosTemperatura1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da Temperatura do Fogo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Grande", 0, 18))); // NOI18N
 
         jLabel7.setText("Temperatura do Fogo:");
 
-        jLabel8.setText("Temperatura Máxima da Água:");
+        jLabel8.setText("Temperatura Máxima do Fogo:");
 
-        jLabel9.setText("Temperatura Mínima da Água:");
+        jLabel9.setText("Temperatura Mínima do Fogo:");
+
+        saidaTempFogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaTempMaxFogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        saidaTempMinFogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout panelDadosTemperatura1Layout = new javax.swing.GroupLayout(panelDadosTemperatura1);
         panelDadosTemperatura1.setLayout(panelDadosTemperatura1Layout);
@@ -142,21 +211,34 @@ public class TelaCaldeira extends javax.swing.JFrame {
             .addGroup(panelDadosTemperatura1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel8)
+                    .addComponent(jLabel7)
                     .addComponent(jLabel9))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saidaTempMinFogo, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(saidaTempFogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempMaxFogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelDadosTemperatura1Layout.setVerticalGroup(
             panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDadosTemperatura1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addGroup(panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempFogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addGroup(panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saidaTempMaxFogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelDadosTemperatura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDadosTemperatura1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(saidaTempMinFogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         botaoSair.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -174,6 +256,9 @@ public class TelaCaldeira extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(465, 465, 465)
+                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botaoTelaControleAgua, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
@@ -183,10 +268,7 @@ public class TelaCaldeira extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelDadosTemperatura1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoTelaControleFogo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(465, 465, 465)
-                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(botaoTelaControleFogo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -226,7 +308,7 @@ public class TelaCaldeira extends javax.swing.JFrame {
         int resp = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente sair?", 
             "Caldeira - Sair", YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if(resp == JOptionPane.YES_OPTION){
-           System.exit(0);
+            System.exit(0);
         }
     }//GEN-LAST:event_botaoSairActionPerformed
 
@@ -281,5 +363,14 @@ public class TelaCaldeira extends javax.swing.JFrame {
     private javax.swing.JPanel panelDadosAgua;
     private javax.swing.JPanel panelDadosTemperatura;
     private javax.swing.JPanel panelDadosTemperatura1;
+    private javax.swing.JLabel saidaNivelMaxAgua;
+    private javax.swing.JLabel saidaNivelMinAgua;
+    private javax.swing.JLabel saidaTempAgua;
+    private javax.swing.JLabel saidaTempFogo;
+    private javax.swing.JLabel saidaTempMaxAgua;
+    private javax.swing.JLabel saidaTempMaxFogo;
+    private javax.swing.JLabel saidaTempMinAgua;
+    private javax.swing.JLabel saidaTempMinFogo;
+    private javax.swing.JLabel saidaVolumeAgua;
     // End of variables declaration//GEN-END:variables
 }
