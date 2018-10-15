@@ -25,6 +25,7 @@ getInstancia()
 package caldeira;
 
 public class Caldeira {
+
     private int volume;
     private int temperaturaFogo;
     private int temperaturaAgua;
@@ -34,7 +35,7 @@ public class Caldeira {
     private int aguaMin;
 
     public void Caldeira() {
-    };
+    }
 
     private static Caldeira instancia = null;
 
@@ -49,10 +50,15 @@ public class Caldeira {
 
     public void setVolume(int volume) throws Exception {
         if (volume < aguaMax && volume > getAguaMin()) {
+            // 10 litros de água a mais dentro da caldeira: = -2º C dentro da caldeira
+            if (this.volume > volume) {
+                this.temperaturaAgua += 2;
+            } else {
+                this.temperaturaAgua -= 2;
+            }
             this.volume = volume;
-            this.temperaturaAgua -= 2;
-       }
-       this.volume = volume;
+        }
+        this.volume = volume;
     }
 
     public int getTemperaturaFogo() {
@@ -60,6 +66,13 @@ public class Caldeira {
     }
 
     public void setTemperaturaFogo(int temperaturaFogo) {
+        // 10ºC a mais de fogo aumenta em 5º a temperatura dentro caldeira
+        // 10ºC a menos de fogo diminui em 5º a temperatura dentro da caldeira
+        if (this.temperaturaFogo > temperaturaFogo) {
+            this.temperaturaAgua -= 5;
+        } else {
+            this.temperaturaAgua += 5;
+        }
         this.temperaturaFogo = temperaturaFogo;
     }
 
